@@ -40,12 +40,12 @@ if [ "$ENABLE_MONITORING_MANUAL" != "" ]; then
 	ENABLE_MONITORING_MANUAL_PARAMS="--validator-monitor-pubkeys $ENABLE_MONITORING_MANUAL"
 fi
 
-if [ "$ENABLE_FULL_NETWORK_VIEW" != "" ]; then
-	ENABLE_FULL_NETWORK_VIEW_PARAMS="--subscribe-all-subnets --import-all-attestations"
+if [ "$MONITORING_SERVICE_ENDPOINT" != "" ]; then
+	MONITORING_SERVICE_PARAMS="--monitoring-endpoint $MONITORING_SERVICE_ENDPOINT"
 fi
 
-if [ "$MONITORING_ENDPOINT" != "" ]; then
-	MONITORING_ENDPOINT_PARAM="--monitoring-endpoint $MONITORING_ENDPOINT"
+if [ "$ENABLE_FULL_NETWORK_VIEW" != "" ]; then
+	ENABLE_FULL_NETWORK_VIEW_PARAMS="--subscribe-all-subnets --import-all-attestations"
 fi
 
 exec lighthouse \
@@ -64,4 +64,4 @@ exec lighthouse \
 	$ENABLE_MONITORING_AUTO_FLAG \
 	$ENABLE_MONITORING_MANUAL_PARAMS \
 	$ENABLE_FULL_NETWORK_VIEW_PARAMS \
-	$MONITORING_ENDPOINT_PARAM
+	$MONITORING_SERVICE_PARAMS

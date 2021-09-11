@@ -11,6 +11,10 @@ if [ "$ENABLE_METRICS" != "" ]; then
   METRICS_PARAMS="--metrics --metrics-address 0.0.0.0 "
 fi
 
+if [ "$ENABLE_DOPPELGANGER_PROTECTION" != "" ]; then
+  DOPPELGANGER_PROTECTION="--enable-doppelganger-protection "
+fi
+
 # Base dir
 DATADIR=/root/.lighthouse/$NETWORK
 
@@ -55,10 +59,16 @@ if [ "$START_VALIDATOR" != "" ]; then
 			--at-most $VALIDATOR_COUNT
 	fi
 
+	if [ "$MONITORING_SERVICE_ENDPOINT" != "" ]; then
+			MONITORING_SERVICE_PARAMS="--monitoring-endpoint $MONITORING_SERVICE_ENDPOINT"
+	fi
+
 	exec lighthouse \
 		--debug-level $DEBUG_LEVEL \
 		--network $NETWORK \
 		validator \
 		$METRICS_PARAMS \
-		--beacon-nodes $VOTING_ETH2_NODES
+		$MONITORING_SERVICE_PARAMS \
+		--beacon-nodes $VOTING_ETH2_NODES \
+		$DOPPELGANGER_PROTECTION
 fi
