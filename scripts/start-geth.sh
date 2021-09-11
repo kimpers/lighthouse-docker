@@ -8,8 +8,9 @@ if [ "$NETWORK" = "" ]; then
 	NETWORK=$DEFAULT_NETWORK
 fi
 
-
-if [ "$START_GETH" != "" ]; then
+if [ "$PRUNE_GETH" != "" ]; then
+    exec geth snapshot prune-state
+elif [ "$START_GETH" != "" ]; then
 	if [ "$NETWORK" != "$DEFAULT_NETWORK" ]; then
 		exec geth --goerli --http --http.addr "0.0.0.0" --http.vhosts=* --http.api "eth,net" --ipcdisable
 	else
