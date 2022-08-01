@@ -9,11 +9,11 @@ if [ "$NETWORK" = "" ]; then
 fi
 
 if [ "$PRUNE_GETH" != "" ]; then
-    exec geth snapshot prune-state
+    exec geth snapshot prune-state --datadir.ancient=/hdd/ancient
 elif [ "$START_GETH" != "" ]; then
 	if [ "$NETWORK" != "$DEFAULT_NETWORK" ]; then
 		exec geth --goerli --http --http.addr "0.0.0.0" --http.vhosts=* --http.api "eth,net" --ipcdisable
 	else
-		exec geth --syncmode snap --http --http.addr "0.0.0.0" --http.vhosts=* --http.api "eth,net" --ipcdisable
+		exec geth --syncmode snap --http --http.addr "0.0.0.0" --http.vhosts=* --http.api "eth,net" --ipcdisable --datadir.ancient=/hdd/ancient
 	fi
 fi
