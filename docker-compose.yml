@@ -35,7 +35,7 @@ services:
         entrypoint: /bin/sh
         volumes:
             - ./geth-data:/root/.ethereum
-            - /mnt/hdd/geth-data:/hdd/ancient
+            - ${GETH_ANCIENT_CHAINDATA_DIR}:/root/ancient-data
             - ./scripts:/root/scripts:ro
         ports:
             - 30303:30303/tcp

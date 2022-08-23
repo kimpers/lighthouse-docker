@@ -1,6 +1,7 @@
 network/
 secrets/
 geth-data/
+geth-ancient-data/
 lighthouse-data/
 validator_keys/
 .env
