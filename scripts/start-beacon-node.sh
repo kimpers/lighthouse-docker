@@ -52,7 +52,7 @@ if [ "$CHECKPOINT_SYNC_URL" != "" ]; then
 	CHECKPOINT_SYNC_URL_PARAM="--checkpoint-sync-url $CHECKPOINT_SYNC_URL"
 fi
 
-if [ "$SUGGESTED_FEE_RECIPIENT" != ""]; then
+if [ "$SUGGESTED_FEE_RECIPIENT" != "" ]; then
   FEE_RECIPIENT="--suggested-fee-recipient $SUGGESTED_FEE_RECIPIENT"
 fi
 
