@@ -6,6 +6,7 @@ services:
         volumes:
             - ./lighthouse-data:/root/.lighthouse
             - ./scripts:/root/scripts:ro
+            - ./jwttoken:/root/jwttoken:ro
         ports:
             - 5052:5052/tcp
             - 5053:5053/tcp
@@ -37,9 +38,12 @@ services:
             - ./geth-data:/root/.ethereum
             - ${GETH_ANCIENT_CHAINDATA_DIR}:/root/ancient-data
             - ./scripts:/root/scripts:ro
+            - ./jwttoken:/root/jwttoken:ro
         ports:
             - 30303:30303/tcp
             - 30303:30303/udp
+        expose:
+            - 8551
         env_file: .env
         command: /root/scripts/start-geth.sh
         restart: on-failure
