@@ -48,4 +48,19 @@ services:
         command: /root/scripts/start-geth.sh
         restart: on-failure
         stop_grace_period: 3m
-
+        profiles:
+            - donotstart
+    besu:
+        image: hyperledger/besu:${DC_BESU_VERSION}
+        volumes:
+            - ./besu-data:/var/lib/besu
+            - ./jwttoken:/home/besu/jwttoken:ro
+            - ./config:/home/besu/config:ro
+        ports:
+            - 30303:30303/tcp
+            - 30303:30303/udp
+        expose:
+            - 8551
+        env_file: .env
+        restart: on-failure
+        stop_grace_period: 3m
