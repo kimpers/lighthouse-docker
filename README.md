@@ -36,4 +36,4 @@ ERROR: Couldn't find env file: /home/karlm/lighthouse-docker/.env
 
 To enable communication between the execution client and the consensus client using the new Engine API you need to generate a JWT Token to be used for communication.
 
-This is easiest achieved by running `./generate-jwt.sh` which will create a `jwttoken` file with your generated key, this key is automatically passed to the clients inside the containers.
+This is easiest achieved by running `./generate-jwt.sh` which will create a `jwttoken/jwtsecret.hex` file with your generated key, this key is automatically passed to the clients inside the containers.

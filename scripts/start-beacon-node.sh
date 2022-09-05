@@ -63,7 +63,7 @@ exec lighthouse \
 	--http \
 	--http-address 0.0.0.0 \
 	--execution-endpoint $EXECUTION_ENDPOINT \
-	--execution-jwt /root/jwttoken \
+	--execution-jwt /root/jwttoken/jwtsecret.hex \
 	$METRICS_PARAMS \
 	$GRAFFITI_PARAM \
 	$ETH1_FLAG \
