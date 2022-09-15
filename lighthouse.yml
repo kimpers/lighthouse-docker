@@ -31,3 +31,10 @@ services:
         command: sh /root/scripts/start-validator-client.sh
         restart: on-failure
         stop_grace_period: 3m
+    mev_boost:
+        image: flashbots/mev-boost:latest
+        expose:
+          - 18550
+        command: -addr 0.0.0.0:18550 -mainnet -relay-check -relays ${MEV_RELAYS}
+        env_file: .env
+        restart: on-failure

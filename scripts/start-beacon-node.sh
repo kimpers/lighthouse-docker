@@ -58,6 +58,8 @@ fi
 
 EXECUTION_JWT="/root/jwttoken/jwtsecret.hex"
 
+BUILDER_PARAM="--builder http://mev_boost:18550"
+
 exec lighthouse \
 	--debug-level $DEBUG_LEVEL \
 	--network $NETWORK \
@@ -77,4 +79,5 @@ exec lighthouse \
 	$ENABLE_FULL_NETWORK_VIEW_PARAMS \
 	$MONITORING_SERVICE_PARAMS \
 	$CHECKPOINT_SYNC_URL_PARAM \
-	$FEE_RECIPIENT
+	$FEE_RECIPIENT \
+	$BUILDER_PARAM
