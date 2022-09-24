@@ -5,3 +5,4 @@ data-storage-format="BONSAI"
 engine-rpc-port=8551
 engine-jwt-secret="/home/besu/jwttoken/jwtsecret.hex"
 engine-host-allowlist=["*"]
+Xplugin-rocksdb-high-spec-enabled=true
