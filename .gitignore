@@ -9,3 +9,4 @@ docker-compose.override.yaml
 docker-compose.override.yml
 jwttoken
 besu-data/
+nethermind-data/
