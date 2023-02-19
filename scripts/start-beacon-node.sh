@@ -56,6 +56,10 @@ if [ "$SUGGESTED_FEE_RECIPIENT" != "" ]; then
   FEE_RECIPIENT="--suggested-fee-recipient $SUGGESTED_FEE_RECIPIENT"
 fi
 
+EXECUTION_JWT="/root/jwttoken/jwtsecret.hex"
+
+BUILDER_PARAM="--builder http://mev_boost:18550"
+
 exec lighthouse \
 	--debug-level $DEBUG_LEVEL \
 	--network $NETWORK \
@@ -63,7 +67,7 @@ exec lighthouse \
 	--http \
 	--http-address 0.0.0.0 \
 	--execution-endpoint $EXECUTION_ENDPOINT \
-	--execution-jwt /root/jwttoken/jwtsecret.hex \
+	--execution-jwt  $EXECUTION_JWT \
 	$METRICS_PARAMS \
 	$GRAFFITI_PARAM \
 	$ETH1_FLAG \
@@ -75,4 +79,5 @@ exec lighthouse \
 	$ENABLE_FULL_NETWORK_VIEW_PARAMS \
 	$MONITORING_SERVICE_PARAMS \
 	$CHECKPOINT_SYNC_URL_PARAM \
-	$FEE_RECIPIENT
+	$FEE_RECIPIENT \
+	$BUILDER_PARAM

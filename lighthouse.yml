@@ -31,21 +31,10 @@ services:
         command: sh /root/scripts/start-validator-client.sh
         restart: on-failure
         stop_grace_period: 3m
-    geth:
-        image: ethereum/client-go:${GETH_VERSION}
-        entrypoint: /bin/sh
-        volumes:
-            - ./geth-data:/root/.ethereum
-            - ${GETH_ANCIENT_CHAINDATA_DIR}:/root/ancient-data
-            - ./scripts:/root/scripts:ro
-            - ./jwttoken:/root/jwttoken:ro
-        ports:
-            - 30303:30303/tcp
-            - 30303:30303/udp
+    mev_boost:
+        image: flashbots/mev-boost:latest
         expose:
-            - 8551
+          - 18550
+        command: -addr 0.0.0.0:18550 -mainnet -relay-check -relays ${MEV_RELAYS}
         env_file: .env
-        command: /root/scripts/start-geth.sh
         restart: on-failure
-        stop_grace_period: 3m
-

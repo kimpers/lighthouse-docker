@@ -25,6 +25,8 @@ DATADIR=/root/.lighthouse/$NETWORK
 WALLET_NAME=validators
 WALLET_PASSFILE=$DATADIR/secrets/$WALLET_NAME.pass
 
+BUILDER_PARAM="--builder-proposals"
+
 
 if [ "$START_VALIDATOR" != "" ]; then
 	if [ "$IMPORT_LAUNCHPAD_KEYSTORES" != "" ]; then
@@ -75,5 +77,6 @@ if [ "$START_VALIDATOR" != "" ]; then
 		$MONITORING_SERVICE_PARAMS \
 		--beacon-nodes $VOTING_ETH2_NODES \
 		$DOPPELGANGER_PROTECTION \
-		$FEE_RECIPIENT
+		$FEE_RECIPIENT \
+		$BUILDER_PARAM
 fi

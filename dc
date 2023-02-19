@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# ////////////////////////////////////////////////////////////////
+#                    DC - DOCKER COMPOSE HELPER
+# ////////////////////////////////////////////////////////////////
+# This script is used as a helper to run docker-compose commands
+# directly against one of the preconfigured environments
+# For the Lighthouse-Besu environment use: ./dc lb docker_compose_command with args
+# For the Lighthouse-Nethermind environment use: ./dc ln docker_compose_command with args
+# For the Lighthouse-Geth environment use: ./dc lg docker_compose_command with args
+if [ "$1" == "lb" ]; then
+  shift
+  exec docker-compose -f lighthouse.yml -f besu.yml "$@"
+elif [ "$1" == "lg" ]; then
+  shift
+  exec docker-compose -f lighthouse.yml -f geth.yml "$@"
+  elif [ "$1" == "ln" ]; then
+    shift
+    exec docker-compose -f lighthouse.yml -f nethermind.yml "$@"
+elif [ "$1" == "--help" ]; then
+  echo "Usage: This script is used as a helper to run docker-compose commands directly against one of the preconfigured environments (Lighthouse-Geth or Lighthouse-Besu)"
+  echo "For the Lighthouse-Nethermind environment use: ./dc ln docker_compose_command with args"
+  echo "For the Lighthouse-Besu environment use: ./dc lb docker_compose_command with args"
+  echo "For the Lighthouse-Geth environment use: ./dc lg docker_compose_command with args"
+else
+  echo "Unknown command $0"
+  exit 1
+fi
+

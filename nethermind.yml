@@ -1,0 +1,24 @@
+version: "3.0"
+
+services:
+    nethermind:
+        image: nethermind/nethermind:${DC_NETHERMIND_VERSION}
+        volumes:
+            - ./nethermind-data:/nethermind/data
+            - ./jwttoken:/jwttoken:ro
+        ports:
+            - 30303:30303/tcp
+            - 30303:30303/udp
+        expose:
+            - 8551
+        env_file: .env
+        restart: on-failure
+        stop_grace_period: 3m
+        command: >
+          --config mainnet
+          --JsonRpc.Enabled true
+          --JsonRpc.JwtSecretFile=/jwttoken/jwtsecret.hex
+          --datadir /nethermind/data
+          --JsonRpc.EngineHost=0.0.0.0
+          --JsonRpc.EnginePort=8551
+          --Sync.SnapSync=true
